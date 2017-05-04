@@ -12,13 +12,13 @@ class Item implements \JsonSerializable
 {
 	use ItemModelTrait, DataModelTrait;
 	
-	/* Product draft. */
+	/* Item draft. */
 	const STATUS_DRAFT = 0;
 	
-	/* Product published. */
+	/* Item published. */
 	const STATUS_PUBLISHED = 1;
 	
-	/* Product unpublished. */
+	/* Item unpublished. */
 	const STATUS_UNPUBLISHED = 2;
 	
 	/** @Column(type="integer") @Id */
