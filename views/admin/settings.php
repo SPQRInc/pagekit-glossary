@@ -28,6 +28,12 @@
 						</div>
 					</div>
 					<div class="uk-form-row">
+						<label for="form-truncated_content" class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<input id="form-truncated_content" type="checkbox" v-model="config.show_truncated_content">
+						</div>
+					</div>
+					<div class="uk-form-row">
 						<span class="uk-form-label">{{ 'Target' | trans }}</span>
 						<div class="uk-form-controls uk-form-controls-text">
 							<p class="uk-form-controls-condensed">

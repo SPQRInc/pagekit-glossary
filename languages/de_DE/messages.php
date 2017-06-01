@@ -21,6 +21,7 @@
 	'No Items found.'                                                      => 'Keine Einträge gefunden.',
 	'General'                                                              => 'Allgemein',
 	'Show Tooltip'                                                         => 'Zeige Tooltip',
+	'Show truncated content if no excerpt available'                       => 'Zeige gekürzten Inhalt, falls Auszug nicht vorhanden ist',
 	'Target'                                                               => 'Ziel',
 	'New Tab'                                                              => 'Neues Fenster',
 	'Same Tab'                                                             => 'Gleiches Fenster',

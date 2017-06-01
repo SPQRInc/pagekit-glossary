@@ -65,32 +65,40 @@ return [
 	],
 	
 	'permissions' => [
-		'glossary: manage settings' => [
+		'glossary: manage settings'   => [
 			'title' => 'Manage settings'
+		],
+		'glossary: manage glossaries' => [
+			'title' => 'Manage glossaries'
 		]
 	],
 	
 	'settings' => '@glossary/settings',
 	
+	'resources' => [
+		'glossary:' => ''
+	],
+	
 	'config' => [
-		'items_per_page' => 20,
-		'show_tooltip'   => true,
-		'target'         => '_self',
-		'subnav_style'   => '',
-		'items'          => [
+		'items_per_page'         => 20,
+		'show_tooltip'           => true,
+		'show_truncated_content' => true,
+		'target'                 => '_self',
+		'subnav_style'           => '',
+		'items'                  => [
 			'markdown_enabled' => true
 		],
 	],
 	
 	'events' => [
-		'boot'         => function( $event, $app ) {
+		'boot' => function( $event, $app ) {
 			$app->subscribe(
 				new RouteListener,
 				new GlossaryPlugin
 			);
 		},
 		
-		'site' => function ($event, $app) {
+		'site'         => function( $event, $app ) {
 			
 			$app[ 'scripts' ]->add(
 				'uikit-tooltip',

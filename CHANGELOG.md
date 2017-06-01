@@ -1,14 +1,20 @@
 # Changelog
 
+## 1.0.3
+
+- ADD: Added russian language (Thanks to Dmitry Aronov/Glaicer)
+- ADD: Added possibility to choose if truncated content is displayed on glossary overview if there is no excerpt given
+- FIX: Icon in settings
+
 ## 1.0.2
 
-- Fixed typos
-- Added new icon
+- FIX: Typos
+- ADD: New icon
 
 ## 1.0.1
 
-- Fixed ordering
+- FIX: Ordering
 
-## 1.0
+## 1.0.0
 
-- Initial version
+- ADD: Initial version
