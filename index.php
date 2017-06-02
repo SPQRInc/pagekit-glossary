@@ -85,6 +85,7 @@ return [
 		'show_truncated_content' => true,
 		'target'                 => '_self',
 		'subnav_style'           => '',
+		'heading_style'          => 'h1',
 		'items'                  => [
 			'markdown_enabled' => true
 		],

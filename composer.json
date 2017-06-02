@@ -1,6 +1,6 @@
 {
   "name": "spqr/glossary",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "pagekit-extension",
   "title": "Glossary",
   "description": "Adds a glossary to Pagekit",
@@ -16,5 +16,6 @@
     "scripts": "scripts.php"
   },
   "require": {
+    "sunra/php-simple-html-dom-parser": "1.5.2"
   }
 }

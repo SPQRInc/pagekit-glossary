@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4
+
+- ADD: Adjustable style of the heading in the item's detail page
+- FIX: Improved detection of markers
+- FIX: Displays correct page title
+
 ## 1.0.3
 
 - ADD: Added russian language (Thanks to Dmitry Aronov/Glaicer)
