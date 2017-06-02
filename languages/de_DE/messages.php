@@ -29,5 +29,10 @@
 	'None'                                                                 => 'Keiner',
 	'Line'                                                                 => 'Linie',
 	'Pill'                                                                 => 'Pill',
-	'ALL'                                                                  => 'ALLE'
+	'Heading Style'                                                        => 'Überschriften-Stil',
+	'Heading 1'                                                            => 'Überschrift 1',
+	'Heading 2'                                                            => 'Überschrift 2',
+	'Heading 3'                                                            => 'Überschrift 3',
+	'Heading 4'                                                            => 'Überschrift 4',
+	'ALL' => 'ALLE'
 ];

@@ -60,6 +60,17 @@
 							</select>
 						</div>
 					</div>
+					<div class="uk-form-row">
+						<label for="form-headingstyle" class="uk-form-label">{{ 'Heading Style' | trans }}</label>
+						<div class="uk-form-controls">
+							<select id="form-headingstyle" class="uk-form-width-large" v-model="config.heading_style">
+								<option value="h1"">{{ 'Heading 1 | trans' }}</option>
+								<option value="h2"">{{ 'Heading 2 | trans' }}</option>
+								<option value="h3"">{{ 'Heading 3 | trans' }}</option>
+								<option value="h4"">{{ 'Heading 4 | trans' }}</option>
+							</select>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</div>
