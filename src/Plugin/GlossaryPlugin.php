@@ -6,6 +6,7 @@ use Pagekit\Application as App;
 use Pagekit\Content\Event\ContentEvent;
 use Pagekit\Event\EventSubscriberInterface;
 use Spqr\Glossary\Model\Item;
+use Sunra\PhpSimple\HtmlDomParser;
 
 
 class GlossaryPlugin implements EventSubscriberInterface
@@ -19,9 +20,11 @@ class GlossaryPlugin implements EventSubscriberInterface
 	{
 		$content = $event->getContent();
 		$query   = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
+		$dom     = HtmlDomParser::str_get_html( $content );
 		
 		$node    = App::node();
 		$config  = App::module( 'glossary' )->config();
+		
 		$target  = $config[ 'target' ];
 		$tooltip = $config[ 'show_tooltip' ];
 		
@@ -51,19 +54,27 @@ class GlossaryPlugin implements EventSubscriberInterface
 				
 			}
 			
-			foreach ( $markers as $marker ) {
-				$text    = $marker[ 'text' ];
-				$url     = $marker[ 'url' ];
-				$content =
-					preg_replace(
-						'/\b' . preg_quote( $text, "/" ) . '\b/i',
-						"<a href='$url' target='$target' " . ( $tooltip ? "data-uk-tooltip title='$item->excerpt'"
-							: "" ) . ">\$0</a>",
-						$content
-					);
+			foreach ( $dom->find( 'text' ) as $element ) {
+				if ( !in_array( $element->parent()->tag, [ 'a' ] ) ) {
+					
+					foreach ( $markers as $marker ) {
+						$text = $marker[ 'text' ];
+						$url  = $marker[ 'url' ];
+						
+						$excerpt = strip_tags( $item->excerpt );
+						$tooltip = ( $tooltip ? "data-uk-tooltip title='$excerpt'" : "" );
+						
+						$element->innertext = preg_replace(
+							'/\b' . preg_quote( $text, "/" ) . '\b/i',
+							"<a href='$url' target='$target' $tooltip>\$0</a>",
+							$element->innertext
+						);
+					}
+				}
 			}
 			
-			$event->setContent( $content );
+			
+			$event->setContent( $dom );
 			
 		}
 	}
@@ -74,7 +85,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 	public function subscribe()
 	{
 		return [
-			'content.plugins' => [ 'onContentPlugins', 10 ]
+			'content.plugins' => [ 'onContentPlugins', -1 ]
 		];
 	}
 }
