@@ -41,7 +41,7 @@ class SiteController
 		
 		return [
 			'$view' => [
-				'title' => __( 'Glossary' ),
+				'title' => App::node()->title ?: __('Glossary'),
 				'name'  => 'glossary:views/glossary-index.php'
 			],
 			'$data' => [
