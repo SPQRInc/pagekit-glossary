@@ -3,6 +3,7 @@
 ## 1.0.4
 
 - ADD: Adjustable style of the heading in the item's detail page
+- ADD: Adjustable link class
 - FIX: Improved detection of markers
 - FIX: Displays correct page title
 
