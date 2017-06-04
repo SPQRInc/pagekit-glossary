@@ -34,5 +34,6 @@
 	'Heading 2'                                                            => 'Überschrift 2',
 	'Heading 3'                                                            => 'Überschrift 3',
 	'Heading 4'                                                            => 'Überschrift 4',
-	'ALL' => 'ALLE'
+	'Href class'                                                           => 'A href-Klasse',
+	'ALL'                                                                  => 'ALLE'
 ];

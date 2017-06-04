@@ -28,7 +28,8 @@
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label for="form-truncated_content" class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
+						<label for="form-truncated_content"
+						       class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
 						<div class="uk-form-controls uk-form-controls-text">
 							<input id="form-truncated_content" type="checkbox" v-model="config.show_truncated_content">
 						</div>
@@ -55,7 +56,8 @@
 						<div class="uk-form-controls">
 							<select id="form-subnavstyle" class="uk-form-width-large" v-model="config.subnav_style">
 								<option value="">{{ 'None' | trans }}</option>
-								<option value="uk-subnav-line"">{{ 'Line' | trans }}</option>
+								<option value="uk-subnav-line"
+								">{{ 'Line' | trans }}</option>
 								<option value="uk-subnav-pill">{{ 'Pill' | trans }}</option>
 							</select>
 						</div>
@@ -64,13 +66,27 @@
 						<label for="form-headingstyle" class="uk-form-label">{{ 'Heading Style' | trans }}</label>
 						<div class="uk-form-controls">
 							<select id="form-headingstyle" class="uk-form-width-large" v-model="config.heading_style">
-								<option value="h1"">{{ 'Heading 1' | trans }}</option>
-								<option value="h2"">{{ 'Heading 2' | trans }}</option>
-								<option value="h3"">{{ 'Heading 3' | trans }}</option>
-								<option value="h4"">{{ 'Heading 4' | trans }}</option>
+								<option value="h1"
+								">{{ 'Heading 1' | trans }}</option>
+								<option value="h2"
+								">{{ 'Heading 2' | trans }}</option>
+								<option value="h3"
+								">{{ 'Heading 3' | trans }}</option>
+								<option value="h4"
+								">{{ 'Heading 4' | trans }}</option>
 							</select>
 						</div>
 					</div>
+					<div class="uk-form-row">
+						<label for="form-hrefclass" class="uk-form-label">{{ 'Href class' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<p class="uk-form-controls-condensed">
+								<input id="form-hrefclass" type="text" class="uk-form-width-large" v-model="config
+								.hrefclass">
+							</p>
+						</div>
+					</div>
+
 				</li>
 			</ul>
 		</div>

@@ -86,6 +86,7 @@ return [
 		'target'                 => '_self',
 		'subnav_style'           => '',
 		'heading_style'          => 'h1',
+		'hrefclass'              => '',
 		'items'                  => [
 			'markdown_enabled' => true
 		],
