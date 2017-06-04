@@ -22,11 +22,16 @@ class GlossaryPlugin implements EventSubscriberInterface
 		$query   = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
 		$dom     = HtmlDomParser::str_get_html( $content );
 		
-		$node    = App::node();
-		$config  = App::module( 'glossary' )->config();
+		$node   = App::node();
+		$config = App::module( 'glossary' )->config();
 		
-		$target  = $config[ 'target' ];
-		$tooltip = $config[ 'show_tooltip' ];
+		$target    = $config[ 'target' ];
+		$tooltip   = $config[ 'show_tooltip' ];
+		$class     = $config[ 'hrefclass' ];
+		$hrefclass = ( $class ? "class='$class'" : "" );
+		
+		$i = 0;
+		
 		
 		if ( $node->link != "@glossary" ) {
 			
@@ -44,40 +49,41 @@ class GlossaryPlugin implements EventSubscriberInterface
 				}
 				
 				$url                                   = App::url( '@glossary/id', [ 'id' => $item->id ], 'base' );
-				$markers[ strtolower( $item->title ) ] = [ 'text' => $item->title, 'url' => $url ];
+				$markers[ strtolower( $item->title ) ] =
+					[ 'text' => $item->title, 'url' => $url, 'excerpt' => $item->excerpt ];
 				
 				if ( is_array( $item->marker ) && !empty ( $item->marker ) ) {
 					foreach ( $item->marker as $marker ) {
-						$markers[ strtolower( $marker ) ] = [ 'text' => $marker, 'url' => $url ];
+						$markers[ strtolower( $marker ) ] =
+							[ 'text' => $marker, 'url' => $url, 'excerpt' => $item->excerpt ];
 					}
 				}
-				
 			}
 			
 			foreach ( $dom->find( 'text' ) as $element ) {
 				if ( !in_array( $element->parent()->tag, [ 'a' ] ) ) {
-					
 					foreach ( $markers as $marker ) {
-						$text = $marker[ 'text' ];
-						$url  = $marker[ 'url' ];
-						
-						$excerpt = strip_tags( $item->excerpt );
-						$tooltip = ( $tooltip ? "data-uk-tooltip title='$excerpt'" : "" );
-						
+						$text               = $marker[ 'text' ];
+						$url                = $marker[ 'url' ];
+						$tip                = ( $marker[ 'excerpt' ] );
+						$tooltip            = ( $tooltip ? "data-uk-tooltip title='$tip'" : "" );
+						$tmpval             = "tmpval-$i";
 						$element->innertext = preg_replace(
 							'/\b' . preg_quote( $text, "/" ) . '\b/i',
-							"<a href='$url' target='$target' $tooltip>\$0</a>",
-							$element->innertext
+							"<a href='$url' $hrefclass target='$target' $tmpval>\$0</a>",
+							$element->innertext,
+							1
 						);
+						$element->innertext = str_replace( $tmpval, $tooltip, $element->innertext );
+						$i++;
 					}
 				}
+				
 			}
-			
-			
 			$event->setContent( $dom );
-			
 		}
 	}
+	
 	
 	/**
 	 * {@inheritdoc}
