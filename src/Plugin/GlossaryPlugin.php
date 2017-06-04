@@ -65,7 +65,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 					foreach ( $markers as $marker ) {
 						$text               = $marker[ 'text' ];
 						$url                = $marker[ 'url' ];
-						$tip                = ( $marker[ 'excerpt' ] );
+						$tip                = strip_tags( $marker[ 'excerpt' ] );
 						$tooltip            = ( $tooltip ? "data-uk-tooltip title='$tip'" : "" );
 						$tmpval             = "tmpval-$i";
 						$element->innertext = preg_replace(
