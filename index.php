@@ -87,7 +87,7 @@ return [
 		'subnav_style'           => '',
 		'heading_style'          => 'h1',
 		'hrefclass'              => '',
-		'exclusions'             => [ 'a', 'pre', 'code' ],
+		'exclusions'             => [ 'a', 'pre', 'code', 'img' ],
 		'strip_nl'               => false,
 		'items'                  => [
 			'markdown_enabled' => true
