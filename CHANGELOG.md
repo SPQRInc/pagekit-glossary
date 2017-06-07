@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5
+
+- ADD: Added possibility to declare excluded tags
+- ADD: Added possibility to stip new lines
+- FIX: Fixed ordering
+
 ## 1.0.4
 
 - ADD: Adjustable style of the heading in the item's detail page
