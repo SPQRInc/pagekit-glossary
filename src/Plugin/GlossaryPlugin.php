@@ -29,7 +29,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 			true,
 			true,
 			DEFAULT_TARGET_CHARSET,
-			$config[ 'stip_nl' ],
+			$config[ 'strip_nl' ],
 			DEFAULT_BR_TEXT,
 			DEFAULT_SPAN_TEXT
 		);

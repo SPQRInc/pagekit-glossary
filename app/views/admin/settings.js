@@ -20,7 +20,7 @@ window.settings = {
             if (!this.newExclusion) return;
 
             this.config.exclusions.push(this.newExclusion);
-            this.newExclusion = ''
+            this.newExclusion = '';
         },
         remove: function (exclusion) {
             this.config.exclusions.$remove(exclusion);
