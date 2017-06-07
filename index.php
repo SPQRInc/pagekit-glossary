@@ -87,6 +87,8 @@ return [
 		'subnav_style'           => '',
 		'heading_style'          => 'h1',
 		'hrefclass'              => '',
+		'exclusions'             => [ 'a', 'pre', 'code' ],
+		'strip_nl'               => false,
 		'items'                  => [
 			'markdown_enabled' => true
 		],

@@ -18,20 +18,28 @@ class GlossaryPlugin implements EventSubscriberInterface
 	 */
 	public function onContentPlugins( ContentEvent $event )
 	{
-		$content = $event->getContent();
-		$query   = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
-		$dom     = HtmlDomParser::str_get_html( $content );
-		
 		$node   = App::node();
 		$config = App::module( 'glossary' )->config();
 		
-		$target    = $config[ 'target' ];
-		$tooltip   = $config[ 'show_tooltip' ];
-		$class     = $config[ 'hrefclass' ];
-		$hrefclass = ( $class ? "class='$class'" : "" );
+		$content = $event->getContent();
+		$query   = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
+		
+		$dom     = HtmlDomParser::str_get_html(
+			$content,
+			true,
+			true,
+			DEFAULT_TARGET_CHARSET,
+			$config[ 'stip_nl' ],
+			DEFAULT_BR_TEXT,
+			DEFAULT_SPAN_TEXT
+		);
+		
+		$target     = $config[ 'target' ];
+		$tooltip    = $config[ 'show_tooltip' ];
+		$class      = $config[ 'hrefclass' ];
+		$hrefclass  = ( $class ? "class='$class'" : "" );
 		
 		$i = 0;
-		
 		
 		if ( $node->link != "@glossary" ) {
 			
@@ -61,7 +69,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 			}
 			
 			foreach ( $dom->find( 'text' ) as $element ) {
-				if ( !in_array( $element->parent()->tag, [ 'a' ] ) ) {
+				if ( !in_array( $element->parent()->tag, $config[ 'exclusions' ] ) ) {
 					foreach ( $markers as $marker ) {
 						$text               = $marker[ 'text' ];
 						$url                = $marker[ 'url' ];
@@ -74,12 +82,13 @@ class GlossaryPlugin implements EventSubscriberInterface
 							$element->innertext,
 							1
 						);
+						
 						$element->innertext = str_replace( $tmpval, $tooltip, $element->innertext );
 						$i++;
 					}
 				}
-				
 			}
+			
 			$event->setContent( $dom );
 		}
 	}
