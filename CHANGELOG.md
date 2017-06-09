@@ -3,7 +3,6 @@
 ## 1.0.5
 
 - ADD: Added possibility to declare excluded tags
-- ADD: Added possibility to stip new lines
 - FIX: Fixed ordering
 
 ## 1.0.4

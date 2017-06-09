@@ -16,6 +16,6 @@
     "scripts": "scripts.php"
   },
   "require": {
-    "sunra/php-simple-html-dom-parser": "1.5.2"
+    "paquettg/php-html-parser": "1.7.0"
   }
 }

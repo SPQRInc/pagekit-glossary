@@ -88,7 +88,7 @@ return [
 		'heading_style'          => 'h1',
 		'hrefclass'              => '',
 		'exclusions'             => [ 'a', 'pre', 'code', 'img' ],
-		'strip_nl'               => false,
+		'detection'              => 'auto',
 		'items'                  => [
 			'markdown_enabled' => true
 		],

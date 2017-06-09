@@ -24,22 +24,14 @@ class GlossaryPlugin implements EventSubscriberInterface
 		$content = $event->getContent();
 		$query   = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
 		
-		$dom     = HtmlDomParser::str_get_html(
-			$content,
-			true,
-			true,
-			DEFAULT_TARGET_CHARSET,
-			$config[ 'strip_nl' ],
-			DEFAULT_BR_TEXT,
-			DEFAULT_SPAN_TEXT
-		);
+		$dom = new \DOMDocument();
+		$dom->loadHtml( $content );
+		$xpath = new \DOMXPath( $dom );
 		
-		$target     = $config[ 'target' ];
-		$tooltip    = $config[ 'show_tooltip' ];
-		$class      = $config[ 'hrefclass' ];
-		$hrefclass  = ( $class ? "class='$class'" : "" );
-		
-		$i = 0;
+		$target    = $config[ 'target' ];
+		$tooltip   = $config[ 'show_tooltip' ];
+		$class     = $config[ 'hrefclass' ];
+		$hrefclass = ( $class ? "class='$class'" : "" );
 		
 		if ( $node->link != "@glossary" ) {
 			
@@ -68,31 +60,27 @@ class GlossaryPlugin implements EventSubscriberInterface
 				}
 			}
 			
-			foreach ( $dom->find( 'text' ) as $element ) {
-				if ( !in_array( $element->parent()->tag, $config[ 'exclusions' ] ) ) {
-					foreach ( $markers as $marker ) {
-						$text               = $marker[ 'text' ];
-						$url                = $marker[ 'url' ];
-						$tip                = strip_tags( $marker[ 'excerpt' ] );
-						$tooltip            = ( $tooltip ? "data-uk-tooltip title='$tip'" : "" );
-						$tmpval             = "tmpval-$i";
-						$element->innertext = preg_replace(
-							'/\b' . preg_quote( $text, "/" ) . '\b/i',
-							"<a href='$url' $hrefclass target='$target' $tmpval>\$0</a>",
-							$element->innertext,
-							1
-						);
-						
-						$element->innertext = str_replace( $tmpval, $tooltip, $element->innertext );
-						$i++;
-					}
+			foreach ( $markers as $marker ) {
+				foreach ( $xpath->query( '//text()[not(ancestor::a)]' ) as $node ) {
+					$text     = $marker[ 'text' ];
+					$url      = $marker[ 'url' ];
+					$tip      = strip_tags( $marker[ 'excerpt' ] );
+					$tooltip  = ( $tooltip ? "data-uk-tooltip='' title='$tip'" : "" );
+					$replaced = preg_replace(
+						'/\b' . preg_quote( $text, "/" ) . '\b/i',
+						"<a href='$url' $hrefclass target='$target' $tooltip>\$0</a>",
+						$node->wholeText,
+						1
+					);
+					$newNode  = $dom->createDocumentFragment();
+					$newNode->appendXML( $replaced );
+					$node->parentNode->replaceChild( $newNode, $node );
 				}
 			}
 			
-			$event->setContent( $dom );
+			$event->setContent( $dom->saveHtml() );
 		}
 	}
-	
 	
 	/**
 	 * {@inheritdoc}

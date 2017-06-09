@@ -23,6 +23,15 @@
 						</div>
 					</div>
 					<div class="uk-form-row">
+						<label for="form-detection" class="uk-form-label">{{ 'Detection' | trans }}</label>
+						<div class="uk-form-controls">
+							<select id="form-detection" class="uk-form-width-large" v-model="config.detection">
+								<option value="auto">{{ 'Auto' | trans }}</option>
+								<option value="tag">{{ 'Using [glossary]...[/glossary] Tag' | trans }}</option>
+							</select>
+						</div>
+					</div>
+					<div class="uk-form-row">
 						<label for="form-tooltip" class="uk-form-label">{{ 'Show Tooltip' | trans }}</label>
 						<div class="uk-form-controls uk-form-controls-text">
 							<input id="form-tooltip" type="checkbox" v-model="config.show_tooltip">
@@ -33,13 +42,6 @@
 						       class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
 						<div class="uk-form-controls uk-form-controls-text">
 							<input id="form-truncated_content" type="checkbox" v-model="config.show_truncated_content">
-						</div>
-					</div>
-					<div class="uk-form-row">
-						<label for="form-strip_nl"
-						       class="uk-form-label">{{ 'Strip new line' | trans }}</label>
-						<div class="uk-form-controls uk-form-controls-text">
-							<input id="form-strip_nl" type="checkbox" v-model="config.strip_nl">
 						</div>
 					</div>
 					<div class="uk-form-row">
