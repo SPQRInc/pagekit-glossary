@@ -16,6 +16,5 @@
     "scripts": "scripts.php"
   },
   "require": {
-    "paquettg/php-html-parser": "1.7.0"
   }
 }
