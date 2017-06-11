@@ -6,7 +6,6 @@ use Pagekit\Application as App;
 use Pagekit\Content\Event\ContentEvent;
 use Pagekit\Event\EventSubscriberInterface;
 use Spqr\Glossary\Model\Item;
-use Sunra\PhpSimple\HtmlDomParser;
 
 
 class GlossaryPlugin implements EventSubscriberInterface
@@ -18,6 +17,8 @@ class GlossaryPlugin implements EventSubscriberInterface
 	 */
 	public function onContentPlugins( ContentEvent $event )
 	{
+		libxml_use_internal_errors(true);
+		
 		$node   = App::node();
 		$config = App::module( 'glossary' )->config();
 		
@@ -69,8 +70,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 					$replaced = preg_replace(
 						'/\b' . preg_quote( $text, "/" ) . '\b/i',
 						"<a href='$url' $hrefclass target='$target' $tooltip>\$0</a>",
-						$node->wholeText,
-						1
+						$node->wholeText
 					);
 					$newNode  = $dom->createDocumentFragment();
 					$newNode->appendXML( $replaced );
@@ -78,7 +78,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 				}
 			}
 			
-			$event->setContent( $dom->saveHtml() );
+			$event->setContent(utf8_decode($dom->saveHTML($dom->documentElement)));
 		}
 	}
 	
