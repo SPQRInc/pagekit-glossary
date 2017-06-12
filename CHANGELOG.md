@@ -1,9 +1,17 @@
 # Changelog
 
-## 1.0.5
+## 1.0.6 (planned)
 
 - ADD: Added possibility to declare excluded tags
+
+
+## 1.0.5
+
 - FIX: Fixed ordering
+- FIX: UTF8-decoding-issue
+- FIX: Updated Russian translation. Thanks again to Dmitry Aronov/Glaicer
+- FIX: Checks if content is available and prevents errors e.g. on blog's overview
+- DELETED: External DOM-parser is no longer needed
 
 ## 1.0.4
 
