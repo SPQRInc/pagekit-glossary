@@ -28,7 +28,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 			$query = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
 			
 			$dom = new \DOMDocument();
-			$dom->loadHtml( $content );
+			$dom->loadHtml( utf8_decode($content) );
 			$xpath = new \DOMXPath( $dom );
 			
 			$target    = $config[ 'target' ];
@@ -80,7 +80,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 					}
 				}
 				
-				$event->setContent( utf8_decode( $dom->saveHTML( $dom->documentElement ) ) );
+				$event->setContent( utf8_encode( $dom->saveHTML()) );
 			}
 		}
 	}
