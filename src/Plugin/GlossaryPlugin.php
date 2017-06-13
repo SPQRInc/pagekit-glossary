@@ -6,6 +6,7 @@ use Pagekit\Application as App;
 use Pagekit\Content\Event\ContentEvent;
 use Pagekit\Event\EventSubscriberInterface;
 use Spqr\Glossary\Model\Item;
+use Sunra\PhpSimple\HtmlDomParser;
 
 
 class GlossaryPlugin implements EventSubscriberInterface
@@ -17,8 +18,6 @@ class GlossaryPlugin implements EventSubscriberInterface
 	 */
 	public function onContentPlugins( ContentEvent $event )
 	{
-		libxml_use_internal_errors( true );
-		
 		$node   = App::node();
 		$config = App::module( 'glossary' )->config();
 		
@@ -26,10 +25,6 @@ class GlossaryPlugin implements EventSubscriberInterface
 		
 		if ( $content ) {
 			$query = Item::where( [ 'status = ?' ], [ Item::STATUS_PUBLISHED ] );
-			
-			$dom = new \DOMDocument();
-			$dom->loadHtml( utf8_decode($content) );
-			$xpath = new \DOMXPath( $dom );
 			
 			$target    = $config[ 'target' ];
 			$tooltip   = $config[ 'show_tooltip' ];
@@ -64,26 +59,56 @@ class GlossaryPlugin implements EventSubscriberInterface
 				}
 				
 				foreach ( $markers as $marker ) {
-					foreach ( $xpath->query( '//text()[not(ancestor::a)]' ) as $node ) {
-						$text     = $marker[ 'text' ];
-						$url      = $marker[ 'url' ];
-						$tip      = strip_tags( $marker[ 'excerpt' ] );
-						$tooltip  = ( $tooltip ? "data-uk-tooltip='' title='$tip'" : "" );
-						$replaced = preg_replace(
-							'/\b' . preg_quote( $text, "/" ) . '\b/i',
-							"<a href='$url' $hrefclass target='$target' $tooltip>\$0</a>",
-							$node->wholeText
-						);
-						$newNode  = $dom->createDocumentFragment();
-						$newNode->appendXML( $replaced );
-						$node->parentNode->replaceChild( $newNode, $node );
-					}
+					$text    = $marker[ 'text' ];
+					$url     = $marker[ 'url' ];
+					$tooltip =
+						( $tooltip ? "data-uk-tooltip='' title='" . strip_tags( $marker[ 'excerpt' ] ) . "'" : "" );
+					$replace = "<a href='$url' $hrefclass target='$target' $tooltip>\$0</a>";
+					$content =
+						$this->searchDOM( $content, $text, $replace, [ 'a', 'img', 'script', 'style', 'code', 'pre' ] );
 				}
 				
-				$event->setContent( utf8_encode( $dom->saveHTML()) );
+				$event->setContent( $content );
 			}
 		}
 	}
+	
+	/**
+	 * @param       $content
+	 * @param       $search
+	 * @param       $replace
+	 * @param array $excludedParents
+	 *
+	 * @return mixed
+	 */
+	public function searchDOM( $content, $search, $replace, $excludedParents = [] )
+	{
+		
+		$dom = HtmlDomParser::str_get_html(
+			$content,
+			true,
+			true,
+			DEFAULT_TARGET_CHARSET,
+			false,
+			DEFAULT_BR_TEXT,
+			DEFAULT_SPAN_TEXT
+		);
+		
+		
+		foreach ( $dom->find( 'text' ) as $element ) {
+			
+			if ( !in_array( $element->parent()->tag, $excludedParents ) )
+				$element->innertext = preg_replace(
+					'/\b' . preg_quote( $search, "/" ) . '\b/i',
+					$replace,
+					$element->innertext
+				);
+			
+		}
+		
+		return $dom->save();
+	}
+	
 	
 	/**
 	 * {@inheritdoc}
@@ -91,7 +116,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 	public function subscribe()
 	{
 		return [
-			'content.plugins' => [ 'onContentPlugins', 5 ]
+			'content.plugins' => [ 'onContentPlugins', 10 ]
 		];
 	}
 }
