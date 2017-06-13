@@ -27,7 +27,7 @@
 						<div class="uk-form-controls">
 							<select id="form-detection" class="uk-form-width-large" v-model="config.detection">
 								<option value="auto">{{ 'Auto' | trans }}</option>
-<!--								<option value="tag">{{ 'Using [glossary]...[/glossary] Tag' | trans }}</option>-->
+<!--								<option value="manually">{{ 'Manually' | trans }}</option>-->
 							</select>
 						</div>
 					</div>
@@ -35,6 +35,15 @@
 						<label for="form-tooltip" class="uk-form-label">{{ 'Show Tooltip' | trans }}</label>
 						<div class="uk-form-controls uk-form-controls-text">
 							<input id="form-tooltip" type="checkbox" v-model="config.show_tooltip">
+						</div>
+					</div>
+					<div v-if="config.show_tooltip" class="uk-form-row">
+						<label for="form-truncate_tooltip" class="uk-form-label">{{ 'Truncate Tooltip' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<p class="uk-form-controls-condensed">
+								<input id="form-truncate_tooltip" type="number" class="uk-form-width-large"
+								       v-model="config.truncate_tooltip" min="0" number>
+							</p>
 						</div>
 					</div>
 					<div class="uk-form-row">

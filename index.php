@@ -82,6 +82,7 @@ return [
 	'config' => [
 		'items_per_page'         => 20,
 		'show_tooltip'           => true,
+		'truncate_tooltip'       => 150,
 		'show_truncated_content' => true,
 		'target'                 => '_self',
 		'subnav_style'           => '',

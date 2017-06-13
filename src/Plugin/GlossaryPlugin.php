@@ -30,6 +30,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 			$tooltip   = $config[ 'show_tooltip' ];
 			$class     = $config[ 'hrefclass' ];
 			$hrefclass = ( $class ? "class='$class'" : "" );
+			$truncate  = $config[ 'truncate_tooltip' ];
 			
 			if ( $node->link != "@glossary" ) {
 				
@@ -58,15 +59,27 @@ class GlossaryPlugin implements EventSubscriberInterface
 					}
 				}
 				
-				foreach ( $markers as $marker ) {
-					$text    = $marker[ 'text' ];
-					$url     = $marker[ 'url' ];
-					$tooltip =
-						( $tooltip ? "data-uk-tooltip='' title='" . strip_tags( $marker[ 'excerpt' ] ) . "'" : "" );
-					$replace = "<a href='$url' $hrefclass target='$target' $tooltip>\$0</a>";
-					$content =
-						$this->searchDOM( $content, $text, $replace, [ 'a', 'img', 'script', 'style', 'code', 'pre' ] );
+				if ( $config[ 'detection' ] == 'auto' ) {
+					foreach ( $markers as $marker ) {
+						$text = $marker[ 'text' ];
+						$url  = $marker[ 'url' ];
+						$excerpt  = strip_tags( $marker[ 'excerpt' ] );
+						
+						if ( $truncate > 0 ) {
+							$excerpt = strlen( $excerpt ) > $truncate ? substr( $excerpt, 0, $truncate ) . "..." : $excerpt;
+						}
+						
+						$tooltip = ( $tooltip ? "data-uk-tooltip='' title='" . $excerpt . "'" : "" );
+						$replace = "<a href='$url' $hrefclass target='$target' $tooltip>\$0</a>";
+						$content = $this->searchDOM(
+							$content,
+							$text,
+							$replace,
+							[ 'a', 'img', 'script', 'style', 'code', 'pre' ]
+						);
+					}
 				}
+				
 				
 				$event->setContent( $content );
 			}
