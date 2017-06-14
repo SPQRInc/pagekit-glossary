@@ -88,18 +88,20 @@ class SiteController
 		}
 		
 		return [
-			'$view'   => [
+			'$view'         => [
 				'title'          => $item->title ? : __( 'Glossary' ),
 				'name'           => 'glossary:views/glossary-details.php',
 				'og:title'       => $item->get( 'meta.og:title' ) ? : $item->title,
 				'og:description' => $description
 			],
-			'$data'   => [
+			'$data'         => [
 				'config' => App::module( 'glossary' )->config()
 			],
-			'item'    => $item,
-			'heading_size' => App::module( 'glossary' )->config( 'heading_size' ) ? : 'h1',
-			'heading_class' => App::module( 'glossary' )->config( 'heading_class' ) ? : ''
+			'item'          => $item,
+			'heading_size'  => App::module( 'glossary' )->config( 'heading_size' ) ? : 'h1',
+			'heading_class' => ( App::module( 'glossary' )->config( 'heading_class' ) ? "class='" . App::module(
+					'glossary'
+				)->config( 'heading_class' ) . "'" : "" )
 		];
 	}
 	
