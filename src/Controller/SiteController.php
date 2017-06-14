@@ -98,8 +98,8 @@ class SiteController
 				'config' => App::module( 'glossary' )->config()
 			],
 			'item'    => $item,
-			'heading' => App::module( 'glossary' )->config( 'heading_style' ) ? : 'h1',
-		
+			'heading_size' => App::module( 'glossary' )->config( 'heading_size' ) ? : 'h1',
+			'heading_class' => App::module( 'glossary' )->config( 'heading_class' ) ? : ''
 		];
 	}
 	

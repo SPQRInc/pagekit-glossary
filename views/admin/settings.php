@@ -6,8 +6,10 @@
 			<div class="uk-panel">
 				<ul class="uk-nav uk-nav-side pk-nav-large" data-uk-tab="{ connect: '#tab-content' }">
 					<li><a><i class="pk-icon-large-settings uk-margin-right"></i> {{ 'General' | trans }}</a></li>
-<!--					<li><a><i class="uk-icon-puzzle-piece uk-margin-right"></i> {{ 'Exclusions' | trans }}</a></li>
--->				</ul>
+					<li><a><i class="uk-icon-adjust uk-margin-right"></i> {{ 'Appearance' | trans }}</a></li>
+					<!--					<li><a><i class="uk-icon-puzzle-piece uk-margin-right"></i> {{
+					'Exclusions' | trans }}</a></li> -->
+				</ul>
 			</div>
 		</div>
 		<div class="pk-width-content">
@@ -70,6 +72,17 @@
 							</p>
 						</div>
 					</div>
+				</li>
+				<li>
+					<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
+						<div data-uk-margin>
+							<h2 class="uk-margin-remove">{{ 'Appearance' | trans }}</h2>
+						</div>
+						<div data-uk-margin>
+							<button class="uk-button uk-button-primary" @click.prevent="save">{{ 'Save' | trans }}
+							</button>
+						</div>
+					</div>
 					<div class="uk-form-row">
 						<label for="form-subnavstyle" class="uk-form-label">{{ 'Navigation Style' | trans }}</label>
 						<div class="uk-form-controls">
@@ -82,9 +95,9 @@
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label for="form-headingstyle" class="uk-form-label">{{ 'Heading Style' | trans }}</label>
+						<label for="form-heading_size" class="uk-form-label">{{ 'Heading Size' | trans }}</label>
 						<div class="uk-form-controls">
-							<select id="form-headingstyle" class="uk-form-width-large" v-model="config.heading_style">
+							<select id="form-heading_size" class="uk-form-width-large" v-model="config.heading_size">
 								<option value="h1">{{ 'Heading 1' | trans }}</option>
 								<option value="h2">{{ 'Heading 2' | trans }}</option>
 								<option value="h3">{{ 'Heading 3' | trans }}</option>
@@ -93,11 +106,20 @@
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label for="form-hrefclass" class="uk-form-label">{{ 'Href class' | trans }}</label>
+						<label for="form-heading_class" class="uk-form-label">{{ 'Heading Class' | trans }}</label>
 						<div class="uk-form-controls uk-form-controls-text">
 							<p class="uk-form-controls-condensed">
-								<input id="form-hrefclass" type="text" class="uk-form-width-large" v-model="config
-								.hrefclass">
+								<input id="form-heading_class" type="text" class="uk-form-width-large" v-model="config
+								.heading_class">
+							</p>
+						</div>
+					</div>
+					<div class="uk-form-row">
+						<label for="form-href_class" class="uk-form-label">{{ 'Href Class' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<p class="uk-form-controls-condensed">
+								<input id="form-href_class" type="text" class="uk-form-width-large" v-model="config
+								.href_class">
 							</p>
 						</div>
 					</div>

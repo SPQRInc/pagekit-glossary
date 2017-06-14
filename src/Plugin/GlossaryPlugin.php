@@ -28,7 +28,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 			
 			$target    = $config[ 'target' ];
 			$tooltip   = $config[ 'show_tooltip' ];
-			$class     = $config[ 'hrefclass' ];
+			$class     = $config[ 'href_class' ];
 			$hrefclass = ( $class ? "class='$class'" : "" );
 			$truncate  = $config[ 'truncate_tooltip' ];
 			
@@ -61,12 +61,13 @@ class GlossaryPlugin implements EventSubscriberInterface
 				
 				if ( $config[ 'detection' ] == 'auto' ) {
 					foreach ( $markers as $marker ) {
-						$text = $marker[ 'text' ];
-						$url  = $marker[ 'url' ];
-						$excerpt  = strip_tags( $marker[ 'excerpt' ] );
+						$text    = $marker[ 'text' ];
+						$url     = $marker[ 'url' ];
+						$excerpt = strip_tags( $marker[ 'excerpt' ] );
 						
 						if ( $truncate > 0 ) {
-							$excerpt = strlen( $excerpt ) > $truncate ? substr( $excerpt, 0, $truncate ) . "..." : $excerpt;
+							$excerpt =
+								strlen( $excerpt ) > $truncate ? substr( $excerpt, 0, $truncate ) . "..." : $excerpt;
 						}
 						
 						$tooltip = ( $tooltip ? "data-uk-tooltip='' title='" . $excerpt . "'" : "" );

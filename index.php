@@ -86,8 +86,9 @@ return [
 		'show_truncated_content' => true,
 		'target'                 => '_self',
 		'subnav_style'           => '',
-		'heading_style'          => 'h1',
-		'hrefclass'              => '',
+		'href_class'              => '',
+		'heading_size'           => 'h1',
+		'heading_class'          => 'uk-heading-large',
 		'exclusions'             => [ 'a', 'pre', 'code', 'img', 'script', 'style' ],
 		'detection'              => 'auto',
 		'items'                  => [
