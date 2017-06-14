@@ -1,9 +1,11 @@
 # Changelog
 
-## 1.0.6 (planned)
+## 1.0.6
 
-- ADD: Added possibility to declare excluded tags
-
+- ADD: Added possibility to truncate the length of tooltips
+- ADD: Added possibility to set up a heading class
+- ADD: Added new list point in settings view
+- FIX: Improved DOM-handling
 
 ## 1.0.5
 
