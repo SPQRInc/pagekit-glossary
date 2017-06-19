@@ -82,11 +82,12 @@ return [
 	'config' => [
 		'items_per_page'         => 20,
 		'show_tooltip'           => true,
+		'show_markers'           => true,
 		'truncate_tooltip'       => 150,
 		'show_truncated_content' => true,
 		'target'                 => '_self',
 		'subnav_style'           => '',
-		'href_class'              => '',
+		'href_class'             => '',
 		'heading_size'           => 'h1',
 		'heading_class'          => 'uk-heading-large',
 		'exclusions'             => [ 'a', 'pre', 'code', 'img', 'script', 'style' ],

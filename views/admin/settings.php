@@ -34,28 +34,6 @@
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label for="form-tooltip" class="uk-form-label">{{ 'Show Tooltip' | trans }}</label>
-						<div class="uk-form-controls uk-form-controls-text">
-							<input id="form-tooltip" type="checkbox" v-model="config.show_tooltip">
-						</div>
-					</div>
-					<div v-if="config.show_tooltip" class="uk-form-row">
-						<label for="form-truncate_tooltip" class="uk-form-label">{{ 'Truncate Tooltip' | trans }}</label>
-						<div class="uk-form-controls uk-form-controls-text">
-							<p class="uk-form-controls-condensed">
-								<input id="form-truncate_tooltip" type="number" class="uk-form-width-large"
-								       v-model="config.truncate_tooltip" min="0" number>
-							</p>
-						</div>
-					</div>
-					<div class="uk-form-row">
-						<label for="form-truncated_content"
-						       class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
-						<div class="uk-form-controls uk-form-controls-text">
-							<input id="form-truncated_content" type="checkbox" v-model="config.show_truncated_content">
-						</div>
-					</div>
-					<div class="uk-form-row">
 						<span class="uk-form-label">{{ 'Target' | trans }}</span>
 						<div class="uk-form-controls uk-form-controls-text">
 							<p class="uk-form-controls-condensed">
@@ -121,6 +99,35 @@
 								<input id="form-href_class" type="text" class="uk-form-width-large" v-model="config
 								.href_class">
 							</p>
+						</div>
+					</div>
+					<div class="uk-form-row">
+						<label for="form-tooltip" class="uk-form-label">{{ 'Show Tooltip' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<input id="form-tooltip" type="checkbox" v-model="config.show_tooltip">
+						</div>
+					</div>
+					<div v-if="config.show_tooltip" class="uk-form-row">
+						<label for="form-truncate_tooltip" class="uk-form-label">{{ 'Truncate Tooltip' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<p class="uk-form-controls-condensed">
+								<input id="form-truncate_tooltip" type="number" class="uk-form-width-large"
+								       v-model="config.truncate_tooltip" min="0" number>
+							</p>
+						</div>
+					</div>
+					<div class="uk-form-row">
+						<label for="form-truncated_content"
+						       class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<input id="form-truncated_content" type="checkbox" v-model="config.show_truncated_content">
+						</div>
+					</div>
+					<div class="uk-form-row">
+						<label for="form-show_markers"
+						       class="uk-form-label">{{ 'Show markers as tags on detail pages' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<input id="form-show_markers" type="checkbox" v-model="config.show_markers">
 						</div>
 					</div>
 				</li>
