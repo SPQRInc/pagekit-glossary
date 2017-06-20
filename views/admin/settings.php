@@ -7,8 +7,7 @@
 				<ul class="uk-nav uk-nav-side pk-nav-large" data-uk-tab="{ connect: '#tab-content' }">
 					<li><a><i class="pk-icon-large-settings uk-margin-right"></i> {{ 'General' | trans }}</a></li>
 					<li><a><i class="uk-icon-adjust uk-margin-right"></i> {{ 'Appearance' | trans }}</a></li>
-					<!--					<li><a><i class="uk-icon-puzzle-piece uk-margin-right"></i> {{
-					'Exclusions' | trans }}</a></li> -->
+					<li><a><i class="uk-icon-puzzle-piece uk-margin-right"></i> {{ 'Exclusions' | trans }}</a></li>
 				</ul>
 			</div>
 		</div>
@@ -131,7 +130,7 @@
 						</div>
 					</div>
 				</li>
-				<!--<li>
+				<li>
 					<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
 						<div data-uk-margin>
 							<h2 class="uk-margin-remove">{{ 'Exclusions' | trans }}</h2>
@@ -183,7 +182,7 @@
 							</span>
 						</li>
 					</ul>
-				</li>-->
+				</li>
 			</ul>
 		</div>
 	</div>
