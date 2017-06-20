@@ -61,6 +61,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 				
 				if ( $config[ 'detection' ] == 'auto' ) {
 					foreach ( $markers as $marker ) {
+						
 						$text    = $marker[ 'text' ];
 						$url     = $marker[ 'url' ];
 						$excerpt = strip_tags( $marker[ 'excerpt' ] );
@@ -80,7 +81,6 @@ class GlossaryPlugin implements EventSubscriberInterface
 						);
 					}
 				}
-				
 				
 				$event->setContent( $content );
 			}
@@ -111,13 +111,13 @@ class GlossaryPlugin implements EventSubscriberInterface
 		
 		foreach ( $dom->find( 'text' ) as $element ) {
 			
-			if ( !in_array( $element->parent()->tag, $excludedParents ) )
+			if ( !in_array( $element->parent()->tag, $excludedParents ) ) {
 				$element->innertext = preg_replace(
-					'/\b' . preg_quote( $search, "/" ) . '\b/i',
+					'/(?<!\w)' . preg_quote( $search, "/" ) . '(?!\w)/i',
 					$replace,
 					$element->innertext
 				);
-			
+			}
 		}
 		
 		return $dom->save();
