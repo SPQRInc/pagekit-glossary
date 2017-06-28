@@ -113,10 +113,20 @@ return [
 			);
 			
 		},
-		'view.scripts' => function( $event, $scripts ) {
+		'view.scripts' => function( $event, $scripts ) use ( $app ) {
 			$scripts->register( 'link', 'glossary:app/bundle/link.js', '~panel-link' );
 			$scripts->register( 'item-meta', 'glossary:app/bundle/item-meta.js', '~item-edit' );
 			$scripts->register( 'item-marker', 'glossary:app/bundle/item-marker.js', '~item-edit' );
+			$scripts->register( 'editor-plugin', 'glossary:app/bundle/editor-plugin.js', [ '~editor' ] );
+			
+			if ( $app->module( 'tinymce' ) ) {
+				$scripts->register(
+					'editor-plugin-tinymce',
+					'glossary:app/bundle/editor-plugin-tinymce.js',
+					[ '~editor-plugin', '~tinymce-script' ]
+				);
+			}
+			
 		}
 	]
 ];

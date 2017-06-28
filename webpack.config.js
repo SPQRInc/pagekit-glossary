@@ -8,7 +8,9 @@ module.exports = [
             "item-meta": "./app/components/item-meta.vue",
             "item-marker": "./app/components/item-marker.vue",
             "glossary-index": "./app/views/glossary-index.js",
-            "glossary-details": "./app/views/glossary-details.js"
+            "glossary-details": "./app/views/glossary-details.js",
+            "editor-plugin": "./app/components/editor-plugin.js",
+            "editor-plugin-tinymce": "./app/components/tinymce-plugin.js"
         },
         output: {
             filename: "./app/bundle/[name].js"
