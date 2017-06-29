@@ -28,7 +28,7 @@
 						<div class="uk-form-controls">
 							<select id="form-detection" class="uk-form-width-large" v-model="config.detection">
 								<option value="auto">{{ 'Auto' | trans }}</option>
-<!--								<option value="manually">{{ 'Manually' | trans }}</option>-->
+								<option value="manually">{{ 'Manually' | trans }}</option>
 							</select>
 						</div>
 					</div>
