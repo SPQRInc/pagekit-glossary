@@ -17,10 +17,10 @@
                                 </div>
                             </div>
                             <div class="uk-form-row">
-                                <label for="form-text" class="uk-form-label">{{ 'Text' | trans }}</label>
+                                <label for="form-title" class="uk-form-label">{{ 'Text' | trans }}</label>
                                 <div class="uk-form-controls uk-form-controls-text">
                                     <p class="uk-form-controls-condensed">
-                                        <input id="form-text" type="text" v-model="item.data.text">
+                                        <input id="form-title" type="text" v-model="item.data.title">
                                     </p>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@ module.exports = {
         return {
             item: {
                 id: -1,
-                data: { text: '' }
+                data: { title: '' }
             },
             items: []
         }

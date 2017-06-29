@@ -1,5 +1,5 @@
 <template>
-    <a :href="glossary.url" @click.prevent="$parent.openModal(item)"><span v-html="item.data.text" v-if="item.data.text"></span><span v-html="glossary.title" v-else></span><span class="pk-icon-link pk-icon-hover"></span></a>
+    <a :href="glossary.url" @click.prevent="$parent.openModal(item)"><span v-html="item.data.title" v-if="item.data.title"></span><span v-html="glossary.title" v-else></span><span class="pk-icon-link pk-icon-hover"></span></a>
 </template>
 
 <script>
