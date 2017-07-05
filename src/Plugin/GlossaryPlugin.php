@@ -204,7 +204,6 @@ class GlossaryPlugin implements EventSubscriberInterface
 		);
 		
 		foreach ( $dom->find( 'text' ) as $element ) {
-			
 			if ( !in_array( $element->parent()->tag, $excludedParents ) ) {
 				$element->innertext = preg_replace(
 					'/(?<!\w)' . preg_quote( $search, "/" ) . '(?!\w)/i',
@@ -216,7 +215,6 @@ class GlossaryPlugin implements EventSubscriberInterface
 		
 		return $dom->save();
 	}
-	
 	
 	/**
 	 * {@inheritdoc}
