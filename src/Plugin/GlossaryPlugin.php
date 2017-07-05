@@ -224,7 +224,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 	public function subscribe()
 	{
 		return [
-			'content.plugins' => [ 'onContentPlugins', 25 ]
+			'content.plugins' => [ 'onContentPlugins', 5 ]
 		];
 	}
 }
