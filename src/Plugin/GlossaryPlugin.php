@@ -47,7 +47,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 	 */
 	public function __construct()
 	{
-		$config           = App::module( 'glossary' )->config();
+		$config           = App::module( 'spqr/glossary' )->config();
 		$this->target     = $config[ 'target' ];
 		$this->tooltip    = $config[ 'show_tooltip' ];
 		$class            = $config[ 'href_class' ];
@@ -87,17 +87,25 @@ class GlossaryPlugin implements EventSubscriberInterface
 					}
 				}
 				
-				$event->addPlugin(
-					'glossary',
-					[
-						$this,
-						'applyPlugin'
-					]
-				);
-				
 				$event->setContent( $content );
 			}
 		}
+	}
+	
+	/**
+	 * @param \Pagekit\Content\Event\ContentEvent $event
+	 */
+	public function onApplyPlugins( ContentEvent $event )
+	{
+		
+		$event->addPlugin(
+			'glossary',
+			[
+				$this,
+				'applyPlugin'
+			]
+		);
+		
 	}
 	
 	/**
@@ -111,8 +119,8 @@ class GlossaryPlugin implements EventSubscriberInterface
 			$query = Item::where( [ 'id = ?', 'status = ?' ], [ $options[ 'id' ], Item::STATUS_PUBLISHED ] );
 			$item  = $query->first();
 			
-			if ( isset( $options[ 'text' ] ) ) {
-				$text = $options[ 'text' ];
+			if ( isset( $options[ 'title' ] ) ) {
+				$text = $options[ 'title' ];
 			} else {
 				$text = strip_tags( $item->title );
 			}
@@ -202,7 +210,6 @@ class GlossaryPlugin implements EventSubscriberInterface
 			DEFAULT_BR_TEXT,
 			DEFAULT_SPAN_TEXT
 		);
-		
 		foreach ( $dom->find( 'text' ) as $element ) {
 			if ( !in_array( $element->parent()->tag, $excludedParents ) ) {
 				$element->innertext = preg_replace(
@@ -222,7 +229,10 @@ class GlossaryPlugin implements EventSubscriberInterface
 	public function subscribe()
 	{
 		return [
-			'content.plugins' => [ 'onContentPlugins', 5 ]
+			'content.plugins' => [
+				[ 'onApplyPlugins', 15 ],
+				[ 'onContentPlugins', 5 ]
+			],
 		];
 	}
 }
