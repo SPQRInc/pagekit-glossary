@@ -9,7 +9,7 @@
 - ADD: Added Editor-Plugin
 - FIX: Fixed VueJS-errors on older browsers, that are not supporting ES2015
 - FIX: Allows detection of items that are starting or ending with special chars
-- FIX: Renaming extension to spqr/glossary to prevent naming issues
+- FIX: Renaming extension to `spqr/glossary` to prevent naming issues
 
 ## 1.0.6
 
