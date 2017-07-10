@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.7 (current dev)
+## 1.0.7
 
 - ADD: Added Transifex-based translations (https://www.transifex.com/spqrinc/pagekit-glossary/)
 - ADD: Added possibility to choose if the markers should be displayed as tags on detail pages
@@ -9,6 +9,7 @@
 - ADD: Added Editor-Plugin
 - FIX: Fixed VueJS-errors on older browsers, that are not supporting ES2015
 - FIX: Allows detection of items that are starting or ending with special chars
+- FIX: Renaming extension to spqr/glossary to prevent naming issues
 
 ## 1.0.6
 

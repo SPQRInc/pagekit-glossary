@@ -1,5 +1,6 @@
 {
   "name": "spqr/glossary",
+  "module": "spqr/glossary",
   "version": "1.0.7",
   "type": "pagekit-extension",
   "title": "Glossary",

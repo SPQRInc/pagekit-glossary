@@ -39,7 +39,7 @@ class UrlResolver implements ParamsResolverInterface
 		}
 		
 		if (!isset($parameters['slug'])) {
-			App::abort(404, 'Project not found.');
+			App::abort(404, 'Item not found.');
 		}
 		
 		$slug = $parameters['slug'];
