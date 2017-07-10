@@ -100,7 +100,7 @@ class SiteController
 			'item'          => $item,
 			'heading_size'  => App::module( 'spqr/glossary' )->config( 'heading_size' ) ? : 'h1',
 			'heading_class' => ( App::module( 'spqr/glossary' )->config( 'heading_class' ) ? "class='" . App::module(
-					'glossary'
+					'spqr/glossary'
 				)->config( 'heading_class' ) . "'" : "" )
 		];
 	}
