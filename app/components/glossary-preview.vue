@@ -11,13 +11,11 @@ module.exports = {
             glossary: ''
         }
     },
-
     computed: {
         item: function() {
             return this.$parent.items[this.index] || {};
         },
     },
-
     ready: function () {
         this.$resource('api/glossary/item{/id}', {id: this.item.id}).get()
             .then(function(res){

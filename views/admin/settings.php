@@ -1,4 +1,4 @@
-<?php $view->script( 'settings', 'glossary:app/bundle/settings.js', [ 'vue' ] ); ?>
+<?php $view->script( 'settings', 'spqr/glossary:app/bundle/settings.js', [ 'vue' ] ); ?>
 
 <div id="settings" class="uk-form uk-form-horizontal" v-cloak>
 	<div class="uk-grid pk-grid-large" data-uk-grid-margin>

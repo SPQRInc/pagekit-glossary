@@ -1,4 +1,4 @@
-<?php $view->script( 'glossary-details', 'glossary:app/bundle/glossary-details.js', 'vue' ); ?>
+<?php $view->script( 'glossary-details', 'spqr/glossary:app/bundle/glossary-details.js', 'vue' ); ?>
 <div id="glossary-details">
 	<div class="uk-grid" data-uk-grid-margin>
 		<div class="uk-width-1-1">

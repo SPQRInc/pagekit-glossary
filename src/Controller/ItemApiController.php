@@ -45,7 +45,7 @@ class ItemApiController
 		} else {
 			$order = [ 1 => 'title', 2 => 'asc' ];
 		}
-		$default = App::module( 'glossary' )->config( 'items_per_page' );
+		$default = App::module( 'spqr/glossary' )->config( 'items_per_page' );
 		$limit   = min( max( 0, $limit ), $default ) ? : $default;
 		$count   = $query->count();
 		$pages   = ceil( $count / $limit );

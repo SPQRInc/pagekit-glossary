@@ -1,6 +1,6 @@
 <?php $view->script(
 	'item-edit',
-	'glossary:app/bundle/item-edit.js',
+	'spqr/glossary:app/bundle/item-edit.js',
 	[
 		'vue',
 		'editor'

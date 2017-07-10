@@ -17,12 +17,12 @@ class GlossaryController
 	 * @param null $filter
 	 * @param int  $page
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function itemAction( $filter = null, $page = 0 )
 	{
 		return [
-			'$view' => [ 'title' => 'Items', 'name' => 'glossary:views/admin/item-index.php' ],
+			'$view' => [ 'title' => 'Items', 'name' => 'spqr/glossary:views/admin/item-index.php' ],
 			'$data' => [
 				'statuses' => Item::getStatuses(),
 				'config'   => [
@@ -44,7 +44,7 @@ class GlossaryController
 	public function editAction( $id = 0 )
 	{
 		try {
-			$module = App::module( 'glossary' );
+			$module = App::module( 'spqr/glossary' );
 			
 			if ( !$item = Item::where( compact( 'id' ) )->first() ) {
 				if ( $id ) {
@@ -63,7 +63,7 @@ class GlossaryController
 			return [
 				'$view' => [
 					'title' => $id ? __( 'Edit Item' ) : __( 'Add Item' ),
-					'name'  => 'glossary:views/admin/item-edit.php'
+					'name'  => 'spqr/glossary:views/admin/item-edit.php'
 				],
 				'$data' => [
 					'item' => $item,
@@ -82,16 +82,16 @@ class GlossaryController
 	 */
 	public function settingsAction()
 	{
-		$module = App::module( 'glossary' );
+		$module = App::module( 'spqr/glossary' );
 		$config = $module->config;
 		
 		return [
 			'$view' => [
 				'title' => __( 'Glossary Settings' ),
-				'name'  => 'glossary:views/admin/settings.php'
+				'name'  => 'spqr/glossary:views/admin/settings.php'
 			],
 			'$data' => [
-				'config' => App::module( 'glossary' )->config()
+				'config' => App::module( 'spqr/glossary' )->config()
 			]
 		];
 	}
@@ -104,7 +104,7 @@ class GlossaryController
 	 */
 	public function saveAction( $config = [] )
 	{
-		App::config()->set( 'glossary', $config );
+		App::config()->set( 'spqr/glossary', $config );
 		
 		return [ 'message' => 'success' ];
 	}

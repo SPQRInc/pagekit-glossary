@@ -42,14 +42,14 @@ class SiteController
 		return [
 			'$view'  => [
 				'title' => App::node()->title ? : __( 'Glossary' ),
-				'name'  => 'glossary:views/glossary-index.php'
+				'name'  => 'spqr/glossary:views/glossary-index.php'
 			],
 			'$data'  => [
-				'config'   => App::module( 'glossary' )->config(),
+				'config'   => App::module( 'spqr/glossary' )->config(),
 				'items'    => $items,
 				'alphabet' => range( 'A', 'Z' )
 			],
-			'config' => App::module( 'glossary' )->config()
+			'config' => App::module( 'spqr/glossary' )->config()
 		];
 	}
 	
@@ -90,16 +90,16 @@ class SiteController
 		return [
 			'$view'         => [
 				'title'          => $item->title ? : __( 'Glossary' ),
-				'name'           => 'glossary:views/glossary-details.php',
+				'name'           => 'spqr/glossary:views/glossary-details.php',
 				'og:title'       => $item->get( 'meta.og:title' ) ? : $item->title,
 				'og:description' => $description
 			],
 			'$data'         => [
-				'config' => App::module( 'glossary' )->config()
+				'config' => App::module( 'spqr/glossary' )->config()
 			],
 			'item'          => $item,
-			'heading_size'  => App::module( 'glossary' )->config( 'heading_size' ) ? : 'h1',
-			'heading_class' => ( App::module( 'glossary' )->config( 'heading_class' ) ? "class='" . App::module(
+			'heading_size'  => App::module( 'spqr/glossary' )->config( 'heading_size' ) ? : 'h1',
+			'heading_class' => ( App::module( 'spqr/glossary' )->config( 'heading_class' ) ? "class='" . App::module(
 					'glossary'
 				)->config( 'heading_class' ) . "'" : "" )
 		];

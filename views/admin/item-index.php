@@ -1,4 +1,4 @@
-<?php $view->script( 'item-index', 'glossary:app/bundle/item-index.js', 'vue' ); ?>
+<?php $view->script( 'item-index', 'spqr/glossary:app/bundle/item-index.js', 'vue' ); ?>
 
 <div id="items" class="uk-form" v-cloak>
 	<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>

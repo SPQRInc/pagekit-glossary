@@ -57,13 +57,18 @@ return [
 		}
 		
 		// remove the config
-		$app[ 'config' ]->remove( 'glossary' );
+		$app[ 'config' ]->remove( 'spqr/glossary' );
 	},
 	
 	/*
 	 * Runs all updates that are newer than the current version.
 	 *
 	 */
-	'updates'   => [],
+	'updates'   => [
+		'1.0.7' => function ($app) {
+			$app['config']->set('spqr/glossary', $app->config('glossary')->toArray());
+			$app['config']->remove('glossary');
+		}
+	],
 
 ];

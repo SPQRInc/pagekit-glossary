@@ -6,7 +6,7 @@ use Spqr\Glossary\Plugin\GlossaryPlugin;
 
 
 return [
-	'name' => 'glossary',
+	'name' => 'spqr/glossary',
 	'type' => 'extension',
 	'main' => function( Application $app ) {
 	
@@ -46,12 +46,12 @@ return [
 			'label'  => 'Glossary',
 			'url'    => '@glossary/item',
 			'active' => '@glossary/item*',
-			'icon'   => 'glossary:icon.svg'
+			'icon'   => 'spqr/glossary:icon.svg'
 		],
 		'glossary: items'    => [
 			'parent' => 'glossary',
 			'label'  => 'Items',
-			'icon'   => 'glossary:icon.svg',
+			'icon'   => 'spqr/glossary:icon.svg',
 			'url'    => '@glossary/item',
 			'access' => 'glossary: manage items',
 			'active' => '@glossary/item*'
@@ -76,7 +76,7 @@ return [
 	'settings' => '@glossary/settings',
 	
 	'resources' => [
-		'glossary:' => ''
+		'spqr/glossary:' => ''
 	],
 	
 	'config' => [
@@ -114,16 +114,16 @@ return [
 			
 		},
 		'view.scripts' => function( $event, $scripts ) use ( $app ) {
-			$scripts->register( 'link', 'glossary:app/bundle/link.js', '~panel-link' );
-			$scripts->register( 'item-meta', 'glossary:app/bundle/item-meta.js', '~item-edit' );
-			$scripts->register( 'item-marker', 'glossary:app/bundle/item-marker.js', '~item-edit' );
-			$scripts->register( 'editor-plugin', 'glossary:app/bundle/editor-plugin.js', [ '~editor' ] );
+			$scripts->register( 'link', 'spqr/glossary:app/bundle/link.js', '~panel-link' );
+			$scripts->register( 'item-meta', 'spqr/glossary:app/bundle/item-meta.js', '~item-edit' );
+			$scripts->register( 'item-marker', 'spqr/glossary:app/bundle/item-marker.js', '~item-edit' );
+			$scripts->register( 'editor-glossary', 'spqr/glossary:app/bundle/editor-glossary.js', [ '~editor' ] );
 			
 			if ( $app->module( 'tinymce' ) ) {
 				$scripts->register(
-					'editor-plugin-tinymce',
-					'glossary:app/bundle/editor-plugin-tinymce.js',
-					[ '~editor-plugin', '~tinymce-script' ]
+					'editor-glossary-tinymce',
+					'spqr/glossary:app/bundle/editor-glossary-tinymce.js',
+					[ '~editor-glossary', '~tinymce-script' ]
 				);
 			}
 			

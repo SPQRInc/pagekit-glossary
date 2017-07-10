@@ -1,4 +1,4 @@
-<?php $view->script( 'glossary-index', 'glossary:app/bundle/glossary-index.js', 'vue' ); ?>
+<?php $view->script( 'glossary-index', 'spqr/glossary:app/bundle/glossary-index.js', 'vue' ); ?>
 <div id="glossary-index">
 	<ul class="uk-subnav <?= $config[ 'subnav_style' ] ?>">
 		<li v-for="letter in alphabet" :class="{ 'uk-active' : letter == selectedLetter}"><a
