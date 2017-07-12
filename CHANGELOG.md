@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.8
+
+- ADD: Added possibility to limit matches per marker using automatic detection mode
+- FIX: Fixed typo
+
 ## 1.0.7
 
 - ADD: Added Transifex-based translations (https://www.transifex.com/spqrinc/pagekit-glossary/)
