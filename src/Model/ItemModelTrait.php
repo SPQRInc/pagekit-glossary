@@ -39,7 +39,7 @@ trait ItemModelTrait
 	 */
 	public static function deleting( $event, Item $item )
 	{
-		self::getConnection()->delete( '@glossary_marler', [ 'item_id' => $item->id ] );
+		self::getConnection()->delete( '@glossary_marker', [ 'item_id' => $item->id ] );
 	}
 	
 	/**
