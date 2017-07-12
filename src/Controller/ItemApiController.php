@@ -118,10 +118,6 @@ class ItemApiController
 	 * @Route("/", methods="POST")
 	 * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
 	 * @Request({"item": "array", "id": "int"}, csrf=true)
-	 * @param     $data
-	 * @param int $id
-	 *
-	 * @return array
 	 */
 	public function saveAction( $data, $id = 0 )
 	{

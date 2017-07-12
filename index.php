@@ -92,6 +92,7 @@ return [
 		'heading_class'          => 'uk-heading-large',
 		'exclusions'             => [ 'a', 'pre', 'code', 'img', 'script', 'style' ],
 		'detection'              => 'auto',
+		'limit'                  => 0,
 		'items'                  => [
 			'markdown_enabled' => true
 		],

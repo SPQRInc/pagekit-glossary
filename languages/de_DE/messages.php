@@ -30,6 +30,7 @@ return [
 	'Item not found!'                                                         => 'Eintrag nicht gefunden!',
 	'Auto'                                                                    => 'Automatisch',
 	'Add Item'                                                                => 'Eintrag hinzufügen',
+	'Limit Matches per Marker'                                                => 'Begrenze Verlinkungen pro Marker und Seite',
 	'Filter by'                                                               => 'Filtern nach',
 	'Exclusions'                                                              => 'Ausschlüsse',
 	'Edit Item'                                                               => 'Eintrag bearbeiten',

@@ -43,6 +43,11 @@ class GlossaryPlugin implements EventSubscriberInterface
 	protected $detection;
 	
 	/**
+	 * @var
+	 */
+	protected $limit;
+	
+	/**
 	 * GlossaryPlugin constructor.
 	 */
 	public function __construct()
@@ -55,6 +60,7 @@ class GlossaryPlugin implements EventSubscriberInterface
 		$this->truncate   = $config[ 'truncate_tooltip' ];
 		$this->exclusions = ( $config[ 'exclusions' ] ? $config[ 'exclusions' ] : [ 'a' ] );
 		$this->detection  = $config[ 'detection' ];
+		$this->limit      = $config[ 'limit' ];
 	}
 	
 	/**
@@ -210,13 +216,31 @@ class GlossaryPlugin implements EventSubscriberInterface
 			DEFAULT_BR_TEXT,
 			DEFAULT_SPAN_TEXT
 		);
+		
+		$count = 0;
+		
 		foreach ( $dom->find( 'text' ) as $element ) {
 			if ( !in_array( $element->parent()->tag, $excludedParents ) ) {
-				$element->innertext = preg_replace(
-					'/(?<!\w)' . preg_quote( $search, "/" ) . '(?!\w)/i',
-					$replace,
-					$element->innertext
-				);
+				if ( ( $this->limit > 0 ) ) {
+					if ( $this->limit > $count ) {
+						$tmp = preg_replace(
+							'/(?<!\w)' . preg_quote( $search, "/" ) . '(?!\w)/i',
+							$replace,
+							$element->innertext,
+							1
+						);
+						if ( $tmp != $element->innertext )
+							$count++;
+						$element->innertext = $tmp;
+					}
+				} else {
+					$element->innertext = preg_replace(
+						'/(?<!\w)' . preg_quote( $search, "/" ) . '(?!\w)/i',
+						$replace,
+						$element->innertext,
+						1
+					);
+				}
 			}
 		}
 		

@@ -39,7 +39,6 @@ trait ItemModelTrait
 	 */
 	public static function deleting( $event, Item $item )
 	{
-		self::getConnection()->delete( '@glossary_marker', [ 'item_id' => $item->id ] );
 	}
 	
 	/**
@@ -74,10 +73,13 @@ trait ItemModelTrait
 	{
 		$metadata = static::getMetadata();
 		$mappings = $metadata->getRelationMappings();
+		
 		foreach ( static::getProperties( $this ) as $name => $value ) {
+			
 			if ( isset( $data[ $name ] ) || isset( $mappings[ $name ] ) ) {
 				continue;
 			}
+			
 			switch ( $metadata->getField( $name, 'type' ) ) {
 				case 'json_array':
 					$value = $value ? : new \stdClass();
@@ -86,6 +88,7 @@ trait ItemModelTrait
 					$value = $value ? $value->format( \DateTime::ATOM ) : null;
 					break;
 			}
+			
 			$data[ $name ] = $value;
 		}
 		

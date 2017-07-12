@@ -115,6 +115,15 @@
 							</p>
 						</div>
 					</div>
+					<div v-if="config.detection === 'auto'" class="uk-form-row">
+						<label for="form-limit" class="uk-form-label">{{ 'Limit Matches per Marker' | trans }}</label>
+						<div class="uk-form-controls uk-form-controls-text">
+							<p class="uk-form-controls-condensed">
+								<input id="form-limit" type="number" class="uk-form-width-large"
+								       v-model="config.limit" min="0" number>
+							</p>
+						</div>
+					</div>
 					<div class="uk-form-row">
 						<label for="form-truncated_content"
 						       class="uk-form-label">{{ 'Show truncated content if no excerpt available' | trans }}</label>
