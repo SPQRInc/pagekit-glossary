@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.9
+
+- FIX: Fixed missing controller that prevented correct linking in frontend
+
 ## 1.0.8
 
 - ADD: Added possibility to limit matches per marker using automatic detection mode

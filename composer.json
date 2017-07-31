@@ -1,7 +1,7 @@
 {
   "name": "spqr/glossary",
   "module": "spqr/glossary",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "type": "pagekit-extension",
   "title": "Glossary",
   "description": "Adds a glossary to Pagekit",
