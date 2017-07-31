@@ -29,7 +29,10 @@ return [
 	'routes' => [
 		'/glossary'     => [
 			'name'       => '@glossary',
-			'controller' => [ 'Spqr\\Glossary\\Controller\\GlossaryController' ]
+			'controller' => [
+				'Spqr\\Glossary\\Controller\\GlossaryController',
+				'Spqr\\Glossary\\Controller\\SiteController'
+			]
 		],
 		'/api/glossary' => [
 			'name'       => '@glossary/api',
